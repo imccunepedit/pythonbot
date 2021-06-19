@@ -1,4 +1,5 @@
-.env
 *.log
 *ig.py
 .vscode
+settings.json
+**/__pycache__
