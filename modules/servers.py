@@ -14,9 +14,9 @@ def list(what):
 
 
 def new(name, version):
-	os.system(f'cp -R {templates}/{version} {servers}/{name}')
+	os.system(f'cp -R {templates}{version} {servers}{name}')
 
 def start(name):
-	os.system(f'screen -dmS mc-{name} bash -c {servers}/{name}/start')
+	os.system(f'screen -dmS mc-{name} bash -c {servers}{name}/start')
 	# os.system(f'screen -dmS mc-{name}')
 	# os.system(f'screen -X bash {servers}/{name}/start -S mc-{name}')
