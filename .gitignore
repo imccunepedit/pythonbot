@@ -2,3 +2,6 @@
 **/*ig.*
 **/__pycache__
 /settings.json
+mcservers/servers/*
+mcservers/templates/1.*
+mcservers/templates/.fabric-installer

@@ -1,0 +1,4 @@
+#!/bin/bash
+mkdir $1
+java -jar fabric-installer.jar server -downloadMinecraft -dir $1 -mcversion $1
+echo eula=True > $1/eula.txt
