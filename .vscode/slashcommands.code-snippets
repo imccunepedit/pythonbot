@@ -21,7 +21,7 @@
 			"\tguild_ids=guild_ids,",
 			"\tname='${1:name}',",
 			"\tdescription='${2:description}'$3)",
-			"async def ${1:name}(ctx):",
+			"async def ${1:name}(self, ctx):",
 			"\tprint('executed ${1:name}')",
 			"\t$0",
 		],

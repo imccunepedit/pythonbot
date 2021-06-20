@@ -42,7 +42,7 @@ class Minecraft(commands.Cog):
 		])
 	async def mclist(self, ctx, what: str):
 		print('executed mclist')
-		await ctx.send(mcservers.listVers(what))
+		await ctx.send(mcservers.list(what))
 
 
 
@@ -74,6 +74,23 @@ class Minecraft(commands.Cog):
 		await ctx.send(embed=embed)
 
 
+
+	@cog_ext.cog_slash(
+		guild_ids=guild_ids,
+		name='mcstart',
+		description='start an existing minecraft server',
+		options=[
+			create_option(
+				name='name',
+				description='name of server to be started',
+				option_type=3,
+				required=True
+			)
+		])
+	async def mcstart(self, ctx, name: str):
+		print('executed mcstart')
+		mcservers.start(name)
+		await ctx.send('started server')
 
 
 
