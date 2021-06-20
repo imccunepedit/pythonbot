@@ -3,18 +3,17 @@ from discord.ext import commands
 from discord_slash import cog_ext
 from discord_slash.utils import manage_commands
 
-from getvars import getVars, getPerm
+from modules.getvars import getDiscordVars, getPerm
 
-TOKEN = getVars('token')
-GUILD = getVars('guild')
-OWNER = getVars('owner')
-ADMIN = getVars('admin')
-EVERYONE = getVars('everyone')
+TOKEN = getDiscordVars('token')
+OWNER = getDiscordVars('owner')
+ADMIN = getDiscordVars('admin')
+EVERYONE = getDiscordVars('everyone')
 
 ownerPerm = getPerm('owner')
 
 
-guild_ids = [GUILD]
+guild_ids = getDiscordVars('guild')
 
 
 class Settings(commands.Cog):
@@ -29,9 +28,9 @@ class Settings(commands.Cog):
 		guild_ids=guild_ids
 		)
 	async def ping(self, ctx):
+		print(f"executed ping {self.bot.latency*1000} (ms)")
 		# create and embed and print the latency to console then send the embed
 		embed=discord.Embed(title="Pong!", description=f"{self.bot.latency*1000} (ms)", color=0x2497d6)
-		print(f"ping {self.bot.latency*1000} (ms)")
 		await ctx.send(embed = embed)
 
 
@@ -43,9 +42,9 @@ class Settings(commands.Cog):
 		description='kill the bot',
 		permissions=ownerPerm
 		)
-	async def stop(ctx):
+	async def stop(self, ctx):
+		print("executed stop")
 		await ctx.send("stopping bot", hidden=True)
-		print("stopping bot")
 		await ctx.bot.close()
 
 
@@ -57,9 +56,9 @@ class Settings(commands.Cog):
 		description='remove all commands',
 		permissions=ownerPerm
 		)
-	async def removeall(ctx):
+	async def removeall(self, ctx):
+		print('executed removeall')
 		resp = await (manage_commands.remove_all_commands(855675247675179019, TOKEN, [GUILD]))
-		print(resp)
 		await ctx.send('done', hidden=True)
 
 
@@ -77,9 +76,9 @@ class Settings(commands.Cog):
 				required=False
 			)
 		])
-	async def getall(ctx, guild: int=None):
+	async def getall(self, ctx, guild: int=None):
+		print('executed getall')
 		resp = await (manage_commands.get_all_commands(855675247675179019, TOKEN, guild))
-		print(resp)
 		await ctx.send('done', hidden=True)
 
 

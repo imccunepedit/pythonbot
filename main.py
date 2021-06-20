@@ -7,13 +7,13 @@ from discord_slash import SlashCommand
 
 
 # import other libraries
-from .getvars import getVars
+from modules.getvars import getDiscordVars
 
 
 # load environment variables of bot and server id
 
-TOKEN = getVars('token')
-GUILD = getVars('guild')
+TOKEN = getDiscordVars('token')
+guild_ids = getDiscordVars('guild')
 
 
 
@@ -31,6 +31,7 @@ async def on_ready():
 
 # load cogs
 bot.load_extension('cogs.settings')
+bot.load_extension('cogs.minecraft')
 
 
 # run the bot
