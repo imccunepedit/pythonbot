@@ -1,5 +1,4 @@
 *.log
-*ig.py
-.vscode
-settings.json
+**/*ig.*
 **/__pycache__
+/settings.json

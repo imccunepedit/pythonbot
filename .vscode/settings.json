@@ -1,0 +1,8 @@
+{
+    "python.pythonPath": "/bin/python3",
+    "editor.insertSpaces": false,
+    "files.exclude": {
+        "**/__pycache__": true
+    },
+    
+}

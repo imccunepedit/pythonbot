@@ -1,0 +1,36 @@
+{
+	"discord bot slash command": {
+		"scope": "python",
+		"prefix": "@slash",
+		"body": [
+			"@slash.slash(",
+			"\tguild_ids=guild_ids,",
+			"\tname='${1:name}',",
+			"\tdescription='${2:description}'$3)",
+			"async def _${1:name}(ctx):",
+			"\tprint('executed ${1:name}",
+			"\t$0",
+		],
+		"description": "slash command for python bots"
+	},
+	"discord bot cog slash command": {
+		"scope": "python",
+		"prefix": "@cslash",
+		"body": [
+			"@cog_ext.cog_slash(",
+			"\tguild_ids=guild_ids,",
+			"\tname='${1:name}',",
+			"\tdescription='${2:description}'$3)",
+			"async def ${1:name}(ctx):",
+			"\tprint('executed ${1:name}')",
+			"\t$0",
+		],
+		"description": "slash command for python bots"
+	},
+	"send": {
+		"scope": "python",
+		"prefix": "send",
+		"body": "await ctx.send($0)",
+	},
+	
+}
