@@ -1,6 +1,8 @@
 import json
 
 
+
+
 def getPorts(key: str=''):
 	with open('ports.json') as f:
 		if key =='':
@@ -34,14 +36,27 @@ def setUsing():
 	return port
 
 
+def resetPorts():
+	p = getPorts()
+	p['used'] = []
+	p['unused'] = list(range(getMinMax('min'), getMinMax('max')+1))
+	setPorts(p)
 
+
+
+t = getPorts()
+if t['unused'] == [] and t['used'] == []:
+	resetPorts()
+		
+	
 
 
 if __name__=="__main__":
 	# open file and read contents
 	p = getPorts()
 	if p['unused'] == [] and p['used'] == []:
-		p['unused'] = list(range(getMinMax('min'), getMinMax('max')+1))
+		resetPorts()
 		
 	setUsing()
+	resetPorts()
 		

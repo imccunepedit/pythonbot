@@ -6,6 +6,7 @@ from discord_slash.utils.manage_commands import create_choice, create_option
 
 from modules.getvars import getDiscordVars, getPerm
 import modules.servers as mcservers
+from modules.porthandling import resetPorts
 
 
 ownerPerm = getPerm('owner')
@@ -75,7 +76,7 @@ class Minecraft(commands.Cog):
 		await ctx.send(embed=embed)
 
 
-
+	# start a server that already exists
 	@cog_ext.cog_slash(
 		guild_ids=guild_ids,
 		name='mcstart',
@@ -93,7 +94,16 @@ class Minecraft(commands.Cog):
 		mcservers.start(name)
 		await ctx.send('started server')
 
-
+	@cog_ext.cog_slash(
+		guild_ids=guild_ids,
+		name='resetPorts',
+		description='resetwhich ports are open and which ports are not',
+		permissions=ownerPerm)
+	async def resetPorts(self, ctx):
+		print('executed resetPorts')
+		resetPorts()
+		await ctx.send('ports reset', hidden=True)
+		
 
 
 
