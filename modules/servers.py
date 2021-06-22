@@ -20,4 +20,5 @@ def new(name, version):
 	os.system(f'cp -R {templates}{version} {servers}{name}')
 
 def start(name):
+	# creates a new screen with the name of the server and then runs commands in that screen to run the start up script
 	os.system(f'screen -dmS mc-{name} bash -c "cd {servers}{name}; bash -c ./start.sh"')
