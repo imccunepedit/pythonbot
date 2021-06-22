@@ -1,16 +1,15 @@
 import json
-import discord
 
 from discord_slash.model import SlashCommandPermissionType
 from discord_slash.utils.manage_commands import create_permission
 
 
-
-
+with open('settings.json') as f:
+	s = json.load(f)
 
 
 def getDiscordVars(var: str):
-    vars = json.load(open('settings.json'))['discord']
+    vars = s['discord']
     return vars[var]
 
 def getPerm(perm: str):
@@ -38,12 +37,10 @@ def getPerm(perm: str):
 
 
 def getPaths():
-	a = json.load(open('settings.json'))['minecraft']
+	a = s['minecraft']
 	b = a['basepath']
 	return b, b+a['templates'], b+a['servers']
 	
-
-
 
 
 

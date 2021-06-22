@@ -67,10 +67,11 @@ class Minecraft(commands.Cog):
 		])
 	async def mcnew(self, ctx, name: str, version: str):
 		print('executed mcnew')
-		mcservers.new(name, version)
-		embed=discord.Embed(title="New server", description="new server created", color=0x01bc4f)
-		embed.add_field(name="Name", value=name, inline=False)
-		embed.add_field(name="Verion", value=version, inline=False)
+		ip = mcservers.new(name, version)
+		embed=discord.Embed(title="New server", description="start the server by running /mcstart `name:`"+name , color=0x01bc4f)
+		embed.add_field(name="Name", value=name, inline=True)
+		embed.add_field(name="Verion", value=version, inline=True)
+		embed.add_field(name="ip", value=ip, inline=True)
 		await ctx.send(embed=embed)
 
 

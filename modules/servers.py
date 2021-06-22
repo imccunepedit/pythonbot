@@ -2,6 +2,7 @@ import subprocess
 import os
 
 from modules.getvars import getPaths
+from modules.porthandling import setUsing
 
 base, templates, servers = getPaths()
 
@@ -17,8 +18,16 @@ def list(what):
 
 
 def new(name, version):
+	port = setUsing()
+	if port < 10:
+		return 'error not ports available'
 	os.system(f'cp -R {templates}{version} {servers}{name}')
+	os.system(f'echo "server-port={port}" > {servers}{name}/server.properties')
+
+	ip = subprocess.check_output('curl ifconfig.me'.split(), text=True) +':'+ str(port)
+	return ip
 
 def start(name):
-	# creates a new screen with the name of the server and then runs commands in that screen to run the start up script
+	# creates a new screen with the name of the server and then runs commands in that screen 
+	# to run the start up script
 	os.system(f'screen -dmS mc-{name} bash -c "cd {servers}{name}; bash -c ./start.sh"')

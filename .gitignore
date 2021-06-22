@@ -5,3 +5,4 @@
 mcservers/servers/*
 mcservers/templates/1.*
 mcservers/templates/.fabric-installer
+ports.json

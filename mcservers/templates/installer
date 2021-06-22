@@ -7,6 +7,7 @@ VERSION="$(echo $1 | awk -F. {'print $2'})"
 
 echo '#!/bin/bash' > $1/start.sh
 if [ $VERSION -gt 16 ]; then
+	echo 'source "$HOME/.sdkman/bin/sdkman-init.sh"' >> $1/start.sh
 	echo 'sdk use java 16.0.1-open' >> $1/start.sh
 fi
 echo 'java -Xms1G -Xmx2G -jar fabric-server-launch.jar nogui' >> $1/start.sh
