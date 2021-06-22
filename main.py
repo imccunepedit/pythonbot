@@ -29,6 +29,11 @@ async def on_ready():
 	print(f"{bot.latency*1000} (ms)")
 
 
+
+
+	
+
+
 # load cogs
 bot.load_extension('cogs.settings')
 bot.load_extension('cogs.minecraft')

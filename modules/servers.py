@@ -12,7 +12,7 @@ def list(what):
 	else:
 		out =  subprocess.check_output(f'ls {servers} --hide=*installer*'.split(), text=True)
 	if out == '':
-		out = 'no servers or versoin where found'
+		out = 'no servers or versions where found'
 	return out
 
 
@@ -20,6 +20,4 @@ def new(name, version):
 	os.system(f'cp -R {templates}{version} {servers}{name}')
 
 def start(name):
-	os.system(f'bash -c {servers}{name}/start')
-	# os.system(f'screen -dmS mc-{name}')
-	# os.system(f'screen -X bash {servers}/{name}/start -S mc-{name}')
+	os.system(f'screen -dmS mc-{name} bash -c "cd {servers}{name}; bash -c ./start.sh"')
