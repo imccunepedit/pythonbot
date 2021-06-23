@@ -2,7 +2,7 @@ import subprocess
 import os
 
 from modules.getvars import getPaths
-from modules.porthandling import setUsing
+from modules.porthandling import getUsing
 
 base, templates, servers = getPaths()
 
@@ -18,7 +18,7 @@ def list(what):
 
 
 def new(name, version):
-	port = setUsing()
+	port = getUsing()
 	if port < 10:
 		return 'error not ports available'
 	os.system(f'cp -R {templates}{version} {servers}{name}')

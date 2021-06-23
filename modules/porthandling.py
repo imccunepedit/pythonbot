@@ -2,7 +2,6 @@ import json
 
 
 
-
 def getPorts(key: str=''):
 	with open('ports.json') as f:
 		if key =='':
@@ -25,7 +24,7 @@ def getMinMax(w: str=''):
 
 
 
-def setUsing():
+def getUsing():
 	p = getPorts()
 	if len(p['unused']) == 0:
 		return 1
@@ -51,12 +50,22 @@ if t['unused'] == [] and t['used'] == []:
 	
 
 
+
+
+
+temp = {
+	"used": [],
+	"unused": [],
+	"minmax": {
+		"min": 0,
+		"max": 0
+	}
+}
 if __name__=="__main__":
-	# open file and read contents
-	p = getPorts()
-	if p['unused'] == [] and p['used'] == []:
-		resetPorts()
-		
-	setUsing()
-	resetPorts()
-		
+	# create new file from template if it doesn't exist
+	try:
+		with open('ports.json', 'r') as f:
+			print('file exists')
+	except FileNotFoundError:
+		with open('ports.json', 'w') as f:
+			json.dump(temp, f, indent='\t')

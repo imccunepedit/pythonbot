@@ -50,3 +50,39 @@ GUILD = getDiscordVars('guild')[0]
 OWNER = getDiscordVars('owner')
 ADMIN = getDiscordVars('admin')
 EVERYONE = getDiscordVars('everyone')
+
+
+
+
+
+
+
+temp = {
+    "discord":{
+        "token": "AAAABBBBCCCCDDDDEEEEFFFF.GGGGGG.HHHHIIIIJJJJKKKKLLLLMMMMNNN",
+        "guild": [111111111111111111],
+    
+        "owner": 111111111111111111,
+        "admin": 111111111111111111,
+        "everyone": 111111111111111111
+    },
+    "minecraft": {
+        "basepath": "mcservers/", 
+        "templates": "templates/",
+        "servers": "servers/"
+    }
+
+    
+}
+
+
+if __name__=="__main__":
+	# create new file from template if it doesn't exist
+
+	try:
+		with open('settings.json', 'r') as f:
+			print('file exists')
+	except FileNotFoundError:
+		with open('settings.json', 'w') as f:
+			json.dump(temp, f, indent='\t')
+		
