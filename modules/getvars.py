@@ -9,27 +9,27 @@ with open('settings.json') as f:
 
 
 def getDiscordVars(var: str):
-    vars = s['discord']
-    return vars[var]
+	vars = s['discord']
+	return vars[var]
 
 def getPerm(perm: str):
-    if perm == 'owner':
-        return {
+	if perm == 'owner':
+		return {
 			GUILD: [
 			create_permission(EVERYONE, SlashCommandPermissionType.ROLE, False),
 			create_permission(OWNER, SlashCommandPermissionType.USER, True),
 			]
 		}
-    elif perm == 'admin':
-        return {
+	elif perm == 'admin':
+		return {
 			GUILD: [
 			create_permission(EVERYONE, SlashCommandPermissionType.ROLE, False),
 			create_permission(ADMIN, SlashCommandPermissionType.ROLE, True),
 			create_permission(OWNER, SlashCommandPermissionType.USER, True),
 			]
 		}
-    else:
-        return {
+	else:
+		return {
 			GUILD: [
 			create_permission(EVERYONE, SlashCommandPermissionType.ROLE, True)
 			]
@@ -58,21 +58,21 @@ EVERYONE = getDiscordVars('everyone')
 
 
 temp = {
-    "discord":{
-        "token": "AAAABBBBCCCCDDDDEEEEFFFF.GGGGGG.HHHHIIIIJJJJKKKKLLLLMMMMNNN",
-        "guild": [111111111111111111],
-    
-        "owner": 111111111111111111,
-        "admin": 111111111111111111,
-        "everyone": 111111111111111111
-    },
-    "minecraft": {
-        "basepath": "mcservers/", 
-        "templates": "templates/",
-        "servers": "servers/"
-    }
+	"discord":{
+		"token": "AAAABBBBCCCCDDDDEEEEFFFF.GGGGGG.HHHHIIIIJJJJKKKKLLLLMMMMNNN",
+		"guild": [111111111111111111],
+	
+		"owner": 111111111111111111,
+		"admin": 111111111111111111,
+		"everyone": 111111111111111111
+	},
+	"minecraft": {
+		"basepath": "mcservers/", 
+		"templates": "templates/",
+		"servers": "servers/"
+	}
 
-    
+	
 }
 
 

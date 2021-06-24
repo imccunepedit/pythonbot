@@ -1,17 +1,15 @@
-from os import name
 import discord
 from discord.ext import commands
 from discord_slash import cog_ext
 from discord_slash.utils.manage_commands import create_choice, create_option
 
 from modules.getvars import getDiscordVars, getPerm
-import modules.servers as mcservers
 from modules.porthandling import resetPorts
+import modules.mcservers as mcservers
 
 
 ownerPerm = getPerm('owner')
-
-
+verChoices = mcservers.getVerChoice()
 guild_ids = getDiscordVars('guild')
 
 class Minecraft(commands.Cog):
@@ -46,7 +44,6 @@ class Minecraft(commands.Cog):
 		await ctx.send(mcservers.list(what))
 
 
-
 	# create a new minecraft server from a supplied version and name
 	@cog_ext.cog_slash(
 		guild_ids=guild_ids,
@@ -63,7 +60,8 @@ class Minecraft(commands.Cog):
 				name='version',
 				description='version or type of server to create',
 				option_type=3,
-				required=True
+				required=True,
+				choices=verChoices
 			),
 		])
 	async def mcnew(self, ctx, name: str, version: str):
@@ -74,6 +72,34 @@ class Minecraft(commands.Cog):
 		embed.add_field(name="Verion", value=version, inline=True)
 		embed.add_field(name="ip", value=ip, inline=True)
 		await ctx.send(embed=embed)
+
+
+
+
+	# create new version
+	@cog_ext.cog_slash(
+		guild_ids=guild_ids,
+		name='mcnewver',
+		description='create a new minecraft version',
+		permissions=ownerPerm,
+		options=[
+			create_option(
+				name='version',
+				description='version to be created',
+				option_type=3,
+				required=True
+			)
+		])
+	async def mcnewver(self, ctx, version):
+		print('executed mcnewver')
+		await ctx.defer()
+		mcservers.newVer(version)
+		globals()['verChoices'] = mcservers.getVerChoice()
+		await ctx.send('done')
+
+
+
+
 
 
 	# start a server that already exists
@@ -94,6 +120,8 @@ class Minecraft(commands.Cog):
 		mcservers.start(name)
 		await ctx.send('started server')
 
+
+	# reset the ports to all be unused
 	@cog_ext.cog_slash(
 		guild_ids=guild_ids,
 		name='resetPorts',

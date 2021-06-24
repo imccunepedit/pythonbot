@@ -1,7 +1,19 @@
 #!/bin/bash
 mkdir $1
+
+if [ -e fabric-installer.jar ]
+then
+	echo 'no download needed fabric install exists'
+else
+	wget -O  fabric-installer.jar 'https://maven.fabricmc.net/net/fabricmc/fabric-installer/0.7.4/fabric-installer-0.7.4.jar'
+fi
+
 java -jar fabric-installer.jar server -downloadMinecraft -dir $1 -mcversion $1
+
 echo eula=True > $1/eula.txt
+
+echo $1 > $1/info.txt
+
 
 VERSION="$(echo $1 | awk -F. {'print $2'})"
 

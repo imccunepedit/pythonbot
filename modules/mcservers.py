@@ -1,6 +1,8 @@
 import subprocess
 import os
 
+from discord_slash.utils.manage_commands import create_choice
+
 from modules.getvars import getPaths
 from modules.porthandling import getUsing
 
@@ -31,3 +33,18 @@ def start(name):
 	# creates a new screen with the name of the server and then runs commands in that screen 
 	# to run the start up script
 	os.system(f'screen -dmS mc-{name} bash -c "cd {servers}{name}; bash -c ./start.sh"')
+
+
+def getVerChoice():
+	choices = []
+	versions = list('versions').split('\n')
+	versions.remove('')
+	for ver in versions:
+		choices.append(create_choice(value=ver, name=ver))
+	print(choices)
+	return choices
+
+
+
+def newVer(ver):
+	os.system(f"cd {templates} && ./installer {ver}")

@@ -4,5 +4,5 @@
 /settings.json
 mcservers/servers/*
 mcservers/templates/1.*
-mcservers/templates/.fabric-installer
+mcservers/templates/fabric-installer.jar
 ports.json
