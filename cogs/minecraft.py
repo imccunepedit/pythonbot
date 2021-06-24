@@ -9,7 +9,6 @@ import modules.mcservers as mcservers
 
 
 ownerPerm = getPerm('owner')
-verChoices = mcservers.getVerChoice()
 guild_ids = getDiscordVars('guild')
 
 class Minecraft(commands.Cog):
@@ -61,7 +60,7 @@ class Minecraft(commands.Cog):
 				description='version or type of server to create',
 				option_type=3,
 				required=True,
-				choices=verChoices
+				choices=mcservers.getVerChoice()
 			),
 		])
 	async def mcnew(self, ctx, name: str, version: str):
@@ -94,7 +93,6 @@ class Minecraft(commands.Cog):
 		print('executed mcnewver')
 		await ctx.defer()
 		mcservers.newVer(version)
-		globals()['verChoices'] = mcservers.getVerChoice()
 		await ctx.send('done')
 
 
