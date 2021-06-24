@@ -5,7 +5,7 @@ if [ -e fabric-installer.jar ]
 then
 	echo 'no download needed fabric install exists'
 else
-	wget -O  fabric-installer.jar 'https://maven.fabricmc.net/net/fabricmc/fabric-installer/0.7.4/fabric-installer-0.7.4.jar'
+	wget -O  fabric-install.jar 'https://maven.fabricmc.net/net/fabricmc/fabric-installer/0.7.4/fabric-installer-0.7.4.jar'
 fi
 
 java -jar fabric-installer.jar server -downloadMinecraft -dir $1 -mcversion $1
